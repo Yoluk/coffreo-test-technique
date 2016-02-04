@@ -1,0 +1,14 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}MarketplaceBundle:MarketController:listLoans{% endblock %}
+
+{% block body %}
+    <h1>Welcome to the MarketController:listLoans page</h1>
+    <ul>
+        {% for loan in loans %}
+            <li>
+                {{ loan.creationdate|date('d/m/Y (H:i:s)') }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

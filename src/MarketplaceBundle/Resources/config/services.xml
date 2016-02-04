@@ -4,20 +4,11 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-<!--        
-        <service id="DoctrineTaskRepository" class="TodoList\TodoListBundle\TaskRepository\DoctrineTaskRepository" public="false">
+        
+        <service id="MarketplaceRepository" class="MarketplaceBundle\DataAccessLayer\MarketplaceRepository">
             <argument type="service" id="doctrine.orm.entity_manager"/>
         </service>
         
-        <service id="GoogleTaskRepository" class="TodoList\TodoListBundle\TaskRepository\GoogleTaskRepository" public="false">
-            <argument type="service" id="GoogleClient"/>
-            <argument type="service" id="session"/>
-        </service>
-        
-        <service id="GoogleClient" alias="happyr.google.api.client"/>
-        
-        <service id="TaskRepository" alias="GoogleTaskRepository"/>
-        -->
     </services>
     
 </container>

@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Bid
 {
     /**
-     * @var integer
+     * @var integer The bid's id
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -22,12 +22,11 @@ class Bid
     private $id;
 
     /**
-     * @var Loan
+     * @var integer Id of the loan this bid has been placed on
      *
-     * @ORM\ManyToOne(targetEntity="Loan", inversedBy="bids")
-     * @ORM\JoinColumn(name="loan_id", referencedColumnName="id")
+     * @ORM\Column(name="loan_id", type="integer", nullable=false)
      */
-    private $loan;
+    private $loanId;
 
     /**
      * @var float The amount the user has placed
@@ -44,7 +43,7 @@ class Bid
     private $rate;
 
     /**
-     * @var boolean Indicate if the bid has been accepted
+     * @var boolean Indicate if the bid is accepted
      *
      * @ORM\Column(name="accepted", type="boolean", nullable=true)
      */
@@ -56,6 +55,46 @@ class Bid
      * @ORM\Column(name="date", type="datetime", nullable=true)
      */
     private $date;
+    
+    /**
+     * @return integer The bid's id
+     */
+    public function getId() {
+        return $this->id;
+    }
+    
+    /**
+     * @return integer Id of the loan this bid has been placed on
+     */
+    public function getLoanId() {
+        return $this->loanId;
+    }
+    
+    /**
+     * @return float The amount the user has placed
+     */
+    public function getAmount() {
+        return $this->amount;
+    }
+    
+    /**
+     * @return float The rate requested by the user
+     */
+    public function getRate() {
+        return $this->rate;
+    }
 
+    /**
+     * @return boolean Indicate if the bid is accepted
+     */
+    public function getAccepted() {
+        return $this->accepted;
+    }
 
+    /**
+     * @return \DateTime The time the bid was placed
+     */
+    public function getDate() {
+        return $this->date;
+    }
 }

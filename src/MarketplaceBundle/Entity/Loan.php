@@ -3,10 +3,9 @@
 namespace MarketplaceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use \Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Loan
+ * Representation of a Loan
  *
  * @ORM\Table(name="loan")
  * @ORM\Entity
@@ -58,43 +57,45 @@ class Loan
     private $live;
     
     /**
-     * @var ArrayCollection User bids placed on this loan
-     * 
-     * @ORM\OneToMany(targetEntity="Bid", mappedBy="loan")
+     * @return integer The loan's id
      */
-    private $bids;
-
-    public function __construct() {
-        $this->bids = new ArrayCollection();
-    }
-    
     public function getId() {
         return $this->id;
     }
-
+    
+    /**
+     * @return string The name given to this loan for internal Use
+     */
     public function getName() {
         return $this->name;
     }
 
+    /**
+     * @return string The name a user would see on the frontend
+     */
     public function getDisplayName() {
         return $this->displayName;
     }
 
+    /**
+     * @return float The amount the user is borrowing
+     */
     public function getAmount() {
         return $this->amount;
     }
 
+    /**
+     * @return \DateTime The amount the user is borrowing
+     */
     public function getCreationDate() {
         return $this->creationDate;
     }
 
-    public function isLive() {
+    /**
+     * @return boolean Indicate if the loan is live
+     */
+    public function getLive() {
         return $this->live;
     }
-
-    public function getBids() {
-        return $this->bids->toArray();
-    }
-
 
 }

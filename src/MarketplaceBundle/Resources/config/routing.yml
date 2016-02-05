@@ -1,7 +1,14 @@
-marketplace_homepage:
+root:
     path:     /
-    defaults: { _controller: MarketplaceBundle:Marketplace:listLoans }
+    defaults: 
+        _controller: MarketplaceBundle:Marketplace:listLoans
+        path: /loans
+        permanent: true
 
 list_loans:
     path:     /loans
     defaults: { _controller: MarketplaceBundle:Marketplace:listLoans }
+
+list_bids:
+    path:     /bidsforloan/{loanId}
+    defaults: { _controller: MarketplaceBundle:Marketplace:getAcceptedBidsForLoan }

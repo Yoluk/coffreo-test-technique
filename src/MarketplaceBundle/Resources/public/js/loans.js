@@ -3,19 +3,25 @@ $(document).ready(function() {
         "order": [[0, 'desc']]
     });
     
-    $('#example tbody').on('click', 'tr', function () {
+    $('#loans-table tbody').on('click', 'tr', function () {
         var tr = $(this).closest('tr');
         var row = table.row( tr );
- 
+
         if ( row.child.isShown() ) {
             // This row is already open - close it
-            row.child.hide();
-            tr.removeClass('shown');
+            $('div.slider', row.child()).slideUp( function () {
+                row.child.hide();
+                tr.removeClass('shown');
+            } );
         }
         else {
             // Open this row
-            row.child( format(row.data()) ).show();
+            row.child( '<div class="slider" style="display: none">TODO</div>', 'no-padding' ).show();
             tr.addClass('shown');
+            
+            $('div.slider', row.child()).slideDown();
+ 
         }
+        
     });
 });

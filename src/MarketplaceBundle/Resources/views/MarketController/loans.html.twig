@@ -18,7 +18,7 @@
         </thead>
         <tbody>
             {% for loan in loans %}
-            <tr>
+            <tr data-loanid="{{ loan.id }}">
                 <td>{{ loan.creationdate|date('d/m/Y (H:i:s)') }}</td>
                 <td>{{ loan.displayName }}</td>
                 <td>$ {{ loan.amount|number_format }}</td>
@@ -31,13 +31,6 @@
             </tr>
         </tfoot>#}
     </table>
-    {#<ul>
-        {% for loan in loans %}
-            <li>
-                {{ loan.creationdate|date('d/m/Y (H:i:s)') }}
-            </li>
-        {% endfor %}
-    </ul>#}
 {% endblock %}
 
 {% block javascripts %}

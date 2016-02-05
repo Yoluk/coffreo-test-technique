@@ -1,0 +1,18 @@
+<table id="bids-table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Rate</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for bid in bids %}
+            <tr>
+                <td>{{ bid.date|date('d/m/Y (H:i:s)') }}</td>
+                <td>$ {{ bid.amount|number_format }}</td>
+                <td>{{ bid.rate }} %</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

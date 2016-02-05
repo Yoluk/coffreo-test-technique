@@ -2,6 +2,7 @@
 
 namespace MarketplaceBundle\DataAccessLayer;
 use Doctrine\ORM\EntityManager;
+use \Symfony\Component\HttpKernel\Exception;
 
 /**
  * Description of MarketplaceRepository
@@ -35,7 +36,8 @@ class MarketplaceRepository {
      * Finds all accepted bids for a given loan id in the persistance layer
      * @param mixed $loanId Id of the loan the bids have been placed on
      * @return array All accepted bids
-     * @throws \Exception If no loan can be found with this id (404 code), or if the loan with the requested id is not live (403 code)
+     * @throws Exception\NotFoundHttpException If no loan can be found with this id
+     * @throws Exception\AccessDeniedHttpException If the loan with the requested id is not live
      */
     public function findAcceptedBidsForLoan($loanId)
     {
@@ -44,11 +46,13 @@ class MarketplaceRepository {
         
         if(!isset($loan))
         {
-            throw new \Exception('No loan could be found with this id', 404);
+//            throw new \Exception('No loan could be found with this id', 404);
+            throw new Exception\NotFoundHttpException('No loan could be found with this id');
         }
         if(!$loan->isLive())
         {
-            throw new \Exception('The loan with the requested id is not live', 403);
+//            throw new \Exception('The loan with the requested id is not live', 403);
+            throw new Exception\AccessDeniedHttpException('The loan with the requested id is not live');
         }
         
         return $this->em->getRepository('MarketplaceBundle\Entity\Bid')->findBy(

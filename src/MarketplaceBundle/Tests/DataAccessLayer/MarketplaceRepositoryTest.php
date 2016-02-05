@@ -3,6 +3,7 @@
 namespace MarketplaceBundle\Tests\DataAccessLayer;
 
 use MarketplaceBundle\DataAccessLayer\MarketplaceRepository;
+use \Symfony\Component\HttpKernel\Exception;
 
 /**
  * Unit testing of the MarketplaceRepository class
@@ -46,8 +47,7 @@ class MarketplaceRepositoryTest extends \Symfony\Bundle\FrameworkBundle\Test\Ker
         try {
             $this->marketplaceRepository->findAcceptedBidsForLoan(012345);
             $this->fail('Expected exception');
-        } catch (\Exception $exc) {
-            $this->assertEquals(404, $exc->getCode());
+        } catch (Exception\NotFoundHttpException $exc) {
             $this->assertEquals('No loan could be found with this id', $exc->getMessage());
         }
         
@@ -55,8 +55,7 @@ class MarketplaceRepositoryTest extends \Symfony\Bundle\FrameworkBundle\Test\Ker
         try {
             $this->marketplaceRepository->findAcceptedBidsForLoan(3);
             $this->fail('Expected exception');
-        } catch (\Exception $exc) {
-            $this->assertEquals(403, $exc->getCode());
+        } catch (Exception\AccessDeniedHttpException $exc) {
             $this->assertEquals('The loan with the requested id is not live', $exc->getMessage());
         }
         

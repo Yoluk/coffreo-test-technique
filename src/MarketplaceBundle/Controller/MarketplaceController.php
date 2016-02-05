@@ -22,5 +22,14 @@ class MarketplaceController extends Controller
             'loans' => $loans,
         ));
     }
+    
+    public function getAcceptedBidsForLoanAction($loanId)
+    {
+        $bids = $this->getMarketplaceRepository()->findAcceptedBidsForLoan($loanId);
+
+        return $this->render('MarketplaceBundle:MarketController:bids.html.twig', array(
+            'bids' => $bids,
+        ));
+    }
 
 }

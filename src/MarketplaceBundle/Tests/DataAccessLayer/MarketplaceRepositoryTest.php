@@ -65,10 +65,10 @@ class MarketplaceRepositoryTest extends \Symfony\Bundle\FrameworkBundle\Test\Ker
         //Testing if the method returns an array
         $this->assertInternalType('array', $bids);
         
-        //If there's at least one live loan...
+        //If there's at least one accepted bid...
         if(!empty($bids))
         {
-            //... we test if the first array element is an instance of Loan
+            //... we test if the first array element is an instance of Bid
             $this->assertInstanceOf('\MarketplaceBundle\Entity\Bid', $bids[0]);
         }
         

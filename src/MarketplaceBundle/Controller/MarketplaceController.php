@@ -5,7 +5,7 @@ namespace MarketplaceBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use MarketplaceBundle\DataAccessLayer\MarketplaceRepository;
 
-class MarketControllerController extends Controller
+class MarketplaceController extends Controller
 {
     /**
      * @return MarketplaceRepository The MarketplaceRepository injected in the container as a service

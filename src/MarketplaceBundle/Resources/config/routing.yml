@@ -1,7 +1,7 @@
 marketplace_homepage:
     path:     /
-    defaults: { _controller: MarketplaceBundle:Default:index }
+    defaults: { _controller: MarketplaceBundle:Marketplace:listLoans }
 
 list_loans:
     path:     /loans
-    defaults: { _controller: MarketplaceBundle:MarketController:listLoans }
+    defaults: { _controller: MarketplaceBundle:Marketplace:listLoans }

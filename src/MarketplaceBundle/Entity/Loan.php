@@ -94,7 +94,7 @@ class Loan
     /**
      * @return boolean Indicate if the loan is live
      */
-    public function getLive() {
+    public function isLive() {
         return $this->live;
     }
 

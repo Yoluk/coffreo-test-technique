@@ -4,7 +4,7 @@ namespace MarketplaceBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class MarketControllerControllerTest extends WebTestCase
+class MarketplaceControllerTest extends WebTestCase
 {
     public function testListloans()
     {

@@ -87,7 +87,7 @@ class Bid
     /**
      * @return boolean Indicate if the bid is accepted
      */
-    public function getAccepted() {
+    public function isAccepted() {
         return $this->accepted;
     }
 

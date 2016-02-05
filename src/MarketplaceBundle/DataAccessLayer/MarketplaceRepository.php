@@ -33,22 +33,22 @@ class MarketplaceRepository {
         
     /**
      * Finds all accepted bids for a given loan id in the persistance layer
-     * @param type $loanId Id of the loan the bids have been placed on
+     * @param mixed $loanId Id of the loan the bids have been placed on
      * @return array All accepted bids
-     * @throws Exception If no loan can be found with this id (404 code)
-     * @throws Exception If the loan with the requested id is not live (403 code)
+     * @throws \Exception If no loan can be found with this id (404 code), or if the loan with the requested id is not live (403 code)
      */
-    public function findAcceptedBidsForLoan($loanId) {
+    public function findAcceptedBidsForLoan($loanId)
+    {
         
         $loan = $this->em->getRepository('MarketplaceBundle\Entity\Loan')->find($loanId);
         
         if(!isset($loan))
         {
-            throw new Exception('No loan could be found with this id', 404);
+            throw new \Exception('No loan could be found with this id', 404);
         }
         if(!$loan->isLive())
         {
-            throw new Exception('The loan with the requested id is not live', 403);
+            throw new \Exception('The loan with the requested id is not live', 403);
         }
         
         return $this->em->getRepository('MarketplaceBundle\Entity\Bid')->findBy(

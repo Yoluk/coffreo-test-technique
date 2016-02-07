@@ -3,6 +3,8 @@
 namespace MarketplaceBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpKernel\Exception;
 use MarketplaceBundle\DataAccessLayer\MarketplaceRepository;
 
 class MarketplaceController extends Controller
@@ -25,11 +27,21 @@ class MarketplaceController extends Controller
     
     public function getAcceptedBidsForLoanAction($loanId)
     {
-        $bids = $this->getMarketplaceRepository()->findAcceptedBidsForLoan($loanId);
+        try {
 
-        return $this->render('MarketplaceBundle:MarketController:bids.html.twig', array(
-            'bids' => $bids,
-        ));
+            $bids = $this->getMarketplaceRepository()->findAcceptedBidsForLoan($loanId);
+            
+            $bidsTemplate = $this->renderView('MarketplaceBundle:MarketController:bids.html.twig', array(
+                'bids' => $bids,
+            ));
+//            var_dump($bidsTemplate);die();
+            return new JsonResponse(json_encode($bidsTemplate));
+            
+        } catch (Exception\HttpException $exception) {
+            
+            return new JsonResponse($exception->getMessage(), $exception->getStatusCode());
+
+        }
     }
 
 }

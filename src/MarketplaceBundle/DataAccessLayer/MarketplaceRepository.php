@@ -56,7 +56,8 @@ class MarketplaceRepository {
         }
         
         return $this->em->getRepository('MarketplaceBundle\Entity\Bid')->findBy(
-            array('loanId' => $loanId, 'accepted' => TRUE)
+            array('loanId' => $loanId, 'accepted' => TRUE),
+            array('date' => 'DESC')
         );
     }
 }

@@ -46,12 +46,10 @@ class MarketplaceRepository {
         
         if(!isset($loan))
         {
-//            throw new \Exception('No loan could be found with this id', 404);
             throw new Exception\NotFoundHttpException('No loan could be found with this id');
         }
         if(!$loan->isLive())
         {
-//            throw new \Exception('The loan with the requested id is not live', 403);
             throw new Exception\AccessDeniedHttpException('The loan with the requested id is not live');
         }
         

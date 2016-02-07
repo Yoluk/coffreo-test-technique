@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    
+
     //Initialisation of the loans datatable
     var table = $('#loans-table').DataTable({
         "order": [[0, 'desc']],
@@ -8,7 +8,7 @@ $(document).ready(function () {
         "searching": false,
         "autoWidth": false,
     });
-    
+
     //Attaching an event listener triggered when an user click on a loan's row
     $('#loans-table tbody').on('click', 'tr.loan', function () {
 
@@ -38,10 +38,10 @@ $(document).ready(function () {
 
             var loanId = row.node().getAttribute("data-loanid");
             var idSlider = 'bidsforloan-' + loanId;
-            
+
             //If the details haven't been fetched yet...
             if (typeof row.child() === 'undefined') {
-                
+
                 //... they are fetched using ajax
                 row.child('<div id="' + idSlider + '"></div>', 'no-padding');
                 $.ajax({
@@ -49,20 +49,20 @@ $(document).ready(function () {
                     type: 'GET',
                     dataType: 'json'})
                         .done(function (data) {
-                            $('#' + idSlider).append($.parseJSON(data));
-                            $('#' + idSlider + ' table').DataTable({
-                                "order": [[0, 'desc']],
-                                "paging": false,
-                                "info": false,
-                                "searching": false,
-                                "autoWidth": false,
+                            $('#' + idSlider).append($.parseJSON(data))
+                                .find('table').DataTable({
+                                    "order": [[0, 'desc']],
+                                    "paging": false,
+                                    "info": false,
+                                    "searching": false,
+                                    "autoWidth": false,
                             });
                         })
                         .error(function (result) {
                             $('#' + idSlider).append($.parseJSON(result.responseText));
                         });
             }
-            
+
             //The row is expanded to show the details
             row.child.show();
             $('#' + idSlider).slideDown()

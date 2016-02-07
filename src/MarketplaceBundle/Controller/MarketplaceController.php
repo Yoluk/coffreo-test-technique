@@ -16,15 +16,24 @@ class MarketplaceController extends Controller
         return $this->get('MarketplaceRepository');
     }
     
+    /**
+     * Gets all live loans in the MarketplaceRepository, and render the web page to be returned
+     * @return \Symfony\Component\HttpFoundation\Response The HTTP response to be returned
+     */
     public function listLoansAction()
     {
         $loans = $this->getMarketplaceRepository()->findLiveLoans();
-
+        
         return $this->render('MarketplaceBundle:MarketController:loans.html.twig', array(
             'loans' => $loans,
         ));
     }
     
+    /**
+     * AJAX method only. Gets all accepted bids for a given loan id
+     * @param string $loanId The loan id for wich we want the accepted bids
+     * @return JsonResponse A json response, with the bids' template if success, or an error if failed
+     */
     public function getAcceptedBidsForLoanAction($loanId)
     {
         try {
@@ -34,14 +43,12 @@ class MarketplaceController extends Controller
             $bidsTemplate = $this->renderView('MarketplaceBundle:MarketController:bids.html.twig', array(
                 'bids' => $bids,
             ));
-//            var_dump($bidsTemplate);die();
+            
             return new JsonResponse(json_encode($bidsTemplate));
             
         } catch (Exception\HttpException $exception) {
             
             return new JsonResponse($exception->getMessage(), $exception->getStatusCode());
-
         }
     }
-
 }

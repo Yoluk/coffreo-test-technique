@@ -1,4 +1,5 @@
-<table id="bids-table">
+<h2>Accepted bids for this loan</h2>
+<table id="bids-table" class="striped">
     <thead>
         <tr>
             <th>Date</th>
@@ -9,9 +10,9 @@
     <tbody>
         {% for bid in bids %}
             <tr>
-                <td>{{ bid.date|date('d/m/Y (H:i:s)') }}</td>
-                <td>$ {{ bid.amount|number_format }}</td>
-                <td>{{ bid.rate }} %</td>
+                <td>{{ bid.date|date('d/m/Y') }}</td>
+                <td>$&nbsp{{ bid.amount|number_format }}</td>
+                <td>{{ bid.rate }}&nbsp%</td>
             </tr>
         {% endfor %}
     </tbody>

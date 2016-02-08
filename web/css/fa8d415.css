@@ -7,6 +7,14 @@ h1 {
     text-align: center;
 }
 
+h1 > * {
+    vertical-align: middle;
+}
+
+h1 > img {
+    height: 50px;
+}
+
 h2 {
     font-size: 1.8rem !important;
     margin: 1.5rem 0 0.5rem !important;
